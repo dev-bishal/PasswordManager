@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /*#region ScrollBar CSS*/
+        ::-webkit-scrollbar {
+            width: 7px;
+            height: 7px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-image: linear-gradient(45deg, grey, gray);
+            border-radius: 5px;
+            margin-right: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-image: linear-gradient(45deg, #555454, #202020);
+        }
+
+        #Header_userName:hover span {
+            display: block;
+        }
+
+        /*#endregion ScrollBar CSS*/
+    </style>
+    <title>Password Manager</title>
+</head>
+
+<body>
+    <div id="loginForm_Pnl"
+        class="main-intro-page h-screen w-full fixed hidden flex-col justify-center items-center z-20"
+        style="background-image: linear-gradient(315deg, #0b1928, #121212, #1a2c44);">
+        <h1 class="text-[50px] text-white">Password Manager</h1>
+        <span class="flex gap-3">
+            <a class="cursor-pointer rounded-md px-4 py-3 text-white bg-green-700" id="LogINnBtn">Log In</a>
+            <a id="lgnDefaultUser" class="cursor-pointer rounded-md px-4 py-3 text-white bg-blue-700">Login with
+                Default User</a>
+        </span>
+    </div>
+    <div class="main-container" style="background-image: linear-gradient(315deg, #0b1928, #121212, #1a2c44);">
+        <header class="w-full flex justify-center items-center absolute top-0 z-10 text-[white]">
+            <div
+                class="wrapper flex justify-between items-center py-3 px-3 w-full sm:w-[620px] md:w-[730px] lg:w-[1000px] xl:w-[1250px] sm:px-0">
+                <div class="logo">
+                    <a href="/">
+                        <p class="text-[20px] py-3">Password Manager</p>
+                    </a>
+                </div>
+
+                <div id="Header_userName" class="account flex justify-center items-center gap-3 relative">
+                    <img class="rounded-full h-5 w-5" src="assets/images/duser.png">
+                    <p></p>
+                    <span
+                        class="absolute hidden rounded-lg bg-[#181717] text-[white] border-[1px] border-[#727272] top-[25px] w-[120px]">
+                        <ul>
+                            <li id="LogoutBtn"
+                                class="cursor-pointer px-[20px] py-[10px] border-b-[1px] border-[#353535]">Log Out</li>
+                            </li>
+                        </ul>
+                    </span>
+                </div>
+
+                </nav>
+            </div>
+        </header>
+        <main class="pt-16 flex justify-center lg:h-[90vh]">
+            <div class="wrapper py-5 flex  items-center flex-col w-full
+                    sm:w-[620px] md:w-[730px] lg:w-[1000px] xl:w-[1250px] ">
+
+                <div class="options px-4 flex justify-center items-center w-full gap-4 ">
+                    <input type="text" placeholder="Search" class="rounded-full p-1 px-3 w-[90%] lg:w-1/3">
+                    <button id="AddNewBtn"
+                        class="lg:flex items-center rounded-full p-1 px-3 text-[white] bg-green-600 font-bold">
+                        <p class="hidden lg:block pr-3">Add New </p><i class="px-2 fas fa-plus"></i>
+                    </button>
+                </div>
+                <div class="holder gap-2 flex justify-center flex-col lg:flex-row w-full mt-4">
+                    <div
+                        class="credentailsTypesMenu lg:w-[23%] lg:border rounded-lg p-3 h-fit lg:bg-[#6e6e6e8a] backdrop-blur">
+                        <ul class="text-[white] flex gap-1 lg:block overflow-x-auto lg:overflow-hidden">
+                            <li class="min-w-max block py-1 px-2 my-1 rounded-lg cursor-pointer bg-[#9191918a]">Socials
+                                Accounts
+                            </li>
+                            <li class="min-w-max block py-1 px-2 my-1 rounded-lg cursor-pointer bg-[#9191918a]">Emails
+                                credentails
+                            </li>
+                            <li class="min-w-max block py-1 px-2 my-1 rounded-lg cursor-pointer bg-[#9191918a]">Bank
+                                Accounts</li>
+                            <li class="min-w-max block py-1 px-2 my-1 rounded-lg cursor-pointer bg-[#9191918a]">Cards
+                                and Payment
+                                Details</li>
+                            <li class="min-w-max block py-1 px-2 my-1 rounded-lg cursor-pointer bg-[#9191918a]">ID Cards
+                                and
+                                Licence </li>
+                            <li class="min-w-max block py-1 px-2 my-1 rounded-lg cursor-pointer bg-[#9191918a]">Other
+                                Website
+                                Details</li>
+                        </ul>
+                    </div>
+
+                    <div id="dataCredentials"
+                        class="dataCredentials min-h-[55vh] flex items-center flex-col w-full lg:h-[60vh] overflow-y-auto px-4 lg:w-[75%]">
+                        <!-- <div id="" data-website-type="Social"
+                            class="data flex justify-between items-center bg-white rounded-md shadow-lg w-full px-5 my-1 ">
+                            <img class="object-contain h-10 w-10 rounded-md basis-[12%] flex-shrink-0 flex-grow-0"
+                                src="https://img.freepik.com/premium-vector/blue-social-media-logo_197792-1759.jpg">
+                            <span class="flex flex-col basis-[30%] flex-shrink-0 flex-grow-0">
+                                <b class="capitalize">Facebook</b>
+                                <p>Bishal Biswas</p>
+                            </span>
+                            <span
+                                class="flex justify-between lg:justify-center items-center gap-2 basis-[35%] flex-shrink-0 flex-grow-0">
+                                <p data-value="U2FsdGVkX18kO14QzWdh6XHGxXmn1AZZZy1wCkF7HqE=">*****************</p>
+                                <i class="cursor-pointer text-[black] fas fa-eye-slash"></i>
+                            </span>
+                            <i class="cursor-pointer text-[black] flex-shrink-0 flex-grow-0 fas fa-chevron-right"></i>
+                        </div> -->
+
+                        <h2 class="text-[30px] text-white hidden pt-8">No Credentials Saved Till Now</h2>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer
+            class="w-full bg-[#181b23] text-[white] flex justify-center items-center flex-col lg:fixed lg:bottom-0 static z-20">
+            <div class=" wrapper py-1 flex justify-center items-center w-full flex-col
+            sm:w-[620px] md:w-[730px] lg:w-[1000px] xl:w-[1250px] ">
+                <ul class="flex gap-5 justify-center items-center flex-wrap text-[--text-color1]">
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+                <p class="w-full p-2 text-center">Copyright &copy; 2023. Made with ❤ by
+                    Bishal Biswas.</p>
+            </div>
+        </footer>
+    </div>
+
+    <div class="modal fixed top-0 left-0 hidden justify-center items-center flex-col w-full h-full bg-[#2e2e2ea6] z-20">
+        <div
+            class="form-holder flex justify-center items-center flex-col rounded-md bg-[#000000db] p-3 w-4/5 border-[4px] border-white">
+            <div class="crossBtn w-full flex justify-center items-center relative">
+                <i
+                    class="fas fa-times text-center absolute right-[-30px] top-[-30px] cursor-pointer border-[4px] p-1 h-8 w-8 flex justify-center items-center rounded-full bg-red-700 text-[white]"></i>
+            </div>
+            <div id="credentialsPanel" class="hidden justify-center items-center flex-col w-full">
+                <h2 class="text-[white] text-[25px]">Add new Credentials</h2>
+                <span class="w-full flex gap-2">
+                    <label class="text-[white]" for="WebsiteType">Select Website Type</label>
+                    <select class="my-1 rounded p-1 w-full" name="WebsiteType" id="WebsiteType">
+                        <option value="Socials">Social Accounts</option>
+                        <option value="Emails">Emails credentails</option>
+                        <option value="Bank">Bank Accounts</option>
+                        <option value="Cards">Cards and Payment Details</option>
+                        <option value="ID">ID Cards and Licence</option>
+                        <option value="Other">Other Website Details</option>
+                    </select>
+                </span>
+                <input id="Website" type="text" class="my-1 rounded p-1 w-full" placeholder="Credentials for ">
+                <input id="UserName" type="text" class="my-1 rounded p-1 w-full" placeholder="User Name">
+                <input id="Password" type="text" class="my-1 rounded p-1 w-full" placeholder="Password">
+                <input id="LinkedEmail" type="text" class="my-1 rounded p-1 w-full"
+                    placeholder="Connected Email Address (Optional)">
+                <textarea id="Notes" type="text" class="my-1 rounded p-1 w-full"
+                    placeholder="Other Notes (Optional)"></textarea>
+
+                <span>
+                    <button id="saveDataBtn"
+                        class="rounded-full p-1 my-1 px-3 text-[white] bg-green-600 font-bold">Save</button>
+
+                    <button id="DeleteDataBtn"
+                        class="rounded-full p-1 my-1 px-3 text-[white] bg-red-600 font-bold hidden">Delete</button>
+                </span>
+            </div>
+            <div id="loginPanel" class="flex justify-center items-center flex-col w-full">
+                <h2 class="text-[white] text-[25px]">Sign In</h2>
+                <div class="part1">
+                    <span class="w-full flex gap-2">
+                        <label class="text-[white]" for="">Enter your User Name</label>
+                        <input id="loginUserName" type="text" class="my-1 rounded p-1 w-full" placeholder="UserName">
+                    </span>
+
+                </div>
+                <div class="part2 hidden">
+                    <span class="w-full flex gap-2">
+                        <label class="text-[white]" for="">Enter your Password</label>
+                        <input id="loginPass" type="text" class="my-1 rounded p-1 w-full" placeholder="Password">
+                    </span>
+                    <span class="staysignedinCls flex gap-2 text-white"><input id="staysignedin" type="checkbox"><label
+                            for="staysignedin">Stay
+                            Signed in</label></span>
+                </div>
+                <span class="flex gap-10 mt-4">
+                    <a href="https://dev-bishal.github.io/MomentumCln/create-account/"
+                        class="rounded-md px-4 py-2 text-white bg-[#3038387e]">Create Account</a>
+                    <button id="LoginProceedBtn" class="rounded-md px-4 py-2 text-white bg-green-700">Proceed</button>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+    <script src="FrontEnd-script.js"></script>
+    <script src="accounts.js"></script>
+    <script src="script.js"></script>
+    <script>
+        function CryptoGenerator(value, cryptoType, Key) {
+            if (cryptoType == "encrypt") {
+                var encrypted = CryptoJS.AES.encrypt(value, Key).toString();
+                return encrypted;
+            }
+            else {
+                var decrypted = CryptoJS.AES.decrypt(value, Key);
+                return decrypted.toString(CryptoJS.enc.Utf8)
+            }
+        }
+    </script>
+
+</body>
+
+</html>
