@@ -13,6 +13,7 @@ function readAccount(data1) {
                 if (DataResponse[0].length > 1) {
                     document.querySelector("#loginPanel .part2").classList.remove("hidden");
                     document.querySelector("#loginPanel .part1").classList.add("hidden");
+                    document.querySelector("#Password").focus();
                 }
                 else {
                     alert("User Name not Found, Please retry.");

@@ -25,6 +25,8 @@ LogoutBtn.addEventListener("click", () => {
     DataContainer.innerHTML = "";
     document.getElementById("loginForm_Pnl").classList.add("flex");
     document.getElementById("loginForm_Pnl").classList.remove("hidden");
+    document.querySelector("#UserName").value = "";
+    document.querySelector("#Password").value = "";
     localStorage.clear();
 });
 
@@ -101,7 +103,15 @@ function getUsersAllData(Data) {
                     }
                 } catch (error) {
                     AllDataFetched = data.Data;
-                    LoadData(data.Data)
+
+                    // console.log(AllDataFetched);
+                    // console.log(AllDataFetched);
+                    AllDataFetched.sort((a, b) => {
+                        return a[1].localeCompare(b[1]);
+                    })
+                    LoadData(AllDataFetched);
+                    enableFilter();
+                    enableSearch();
                 }
             })
     }
@@ -196,6 +206,7 @@ LoginProceedBtn.addEventListener("click", () => {
             }
             document.getElementById("loginForm_Pnl").classList.remove("flex");
             document.getElementById("loginForm_Pnl").classList.add("hidden");
+            document.querySelector(".main-container").classList.remove("hidden");
             document.querySelector("#Header_userName p").innerText = `${FetchedData[0][1]} ${FetchedData[0][2]}`;
         }
         else
@@ -210,6 +221,7 @@ if (localStorage.getItem("Personal Assistant UserName") == null) {
 else {
     document.querySelector("#Header_userName p").innerText = `${localStorage.getItem("Personal Assistant UserName").split(",")[1]} ${localStorage.getItem("Personal Assistant UserName").split(",")[2]}`;
     Owner = localStorage.getItem("Personal Assistant UserName").split(",")[4];
+    document.querySelector(".main-container").classList.remove("hidden");
     getUsersAllData(Owner);
 }
 
@@ -217,6 +229,7 @@ document.querySelector("#lgnDefaultUser").addEventListener("click", () => {
 
     document.getElementById("loginForm_Pnl").classList.remove("flex");
     document.getElementById("loginForm_Pnl").classList.add("hidden");
+    document.querySelector(".main-container").classList.remove("hidden");
     document.querySelector("#Header_userName p").innerText = `Elun Mosk`;
     Owner = "EMosk1";
     getUsersAllData(Owner);

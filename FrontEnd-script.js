@@ -7,6 +7,7 @@ var Div_container = document.querySelector(".main-container");
 var DivModal = document.querySelector(".modal");
 var NewDataBtn = document.querySelector("#AddNewBtn");
 var LogInBtn = document.querySelector("#LogINnBtn");
+var SearchTxtbx = document.querySelector("#SearchTxtbx");
 
 LogInBtn.addEventListener("click", () => {
     Trigger_inputModal("loginPanel");
@@ -61,4 +62,47 @@ function resetModal() {
     document.querySelector(".modal .form-holder h2").innerText = "Add new Credentials";
     document.getElementById("saveDataBtn").innerText = "Save";
     document.getElementById("DeleteDataBtn").classList.add("hidden");
+}
+
+function enableSearch() {
+    console.log("Search started");
+    var dataRows = document.querySelectorAll(".dataCredentials .data b");
+    SearchTxtbx.addEventListener("keyup", () => {
+        dataRows.forEach(DataRow => {
+            if (DataRow.innerText.toLowerCase().includes(SearchTxtbx.value.toLowerCase()) == false)
+                DataRow.parentElement.parentElement.classList.add("hidden");
+            else
+                DataRow.parentElement.parentElement.classList.remove("hidden");
+        });
+        //if (tableRows. searchTxtBox.value.toLowerCase())
+    })
+}
+
+
+function enableFilter() {
+    var AllCategories = document.querySelectorAll(".credentailsTypesMenu ul li");
+    var allCredentials = document.querySelectorAll("#dataCredentials div");
+    AllCategories.forEach(category => {
+        category.addEventListener("click", () => {
+            //console.log(`Showing only ${category.innerText}`);
+
+            allCredentials.forEach(CredentialsEle => {
+                if (category.innerText == "Show All") {
+                    CredentialsEle.classList.remove("hidden");
+                    CredentialsEle.classList.add("flex");
+                }
+                else {
+                    if (!category.innerText.includes(CredentialsEle.getAttribute("data-website-type"))) {
+                        CredentialsEle.classList.add("hidden");
+                        CredentialsEle.classList.remove("flex");
+                    }
+                    else {
+                        CredentialsEle.classList.remove("hidden");
+                        CredentialsEle.classList.add("flex");
+                    }
+                }
+
+            });
+        })
+    });
 }
