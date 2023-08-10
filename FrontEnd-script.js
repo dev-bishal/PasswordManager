@@ -9,14 +9,19 @@ var NewDataBtn = document.querySelector("#AddNewBtn");
 var LogInBtn = document.querySelector("#LogINnBtn");
 var SearchTxtbx = document.querySelector("#SearchTxtbx");
 
+var iconsImages = [
+    // ["facebook.com", "FacebookImagename"],
+    // ["instagram.com", "instagramImagename"],
+]
+
 LogInBtn.addEventListener("click", () => {
     Trigger_inputModal("loginPanel");
 });
 
-ModalContainer.addEventListener("click", () => {
-    Trigger_inputModal("credentialsPanel");
-    resetModal();
-});
+// ModalContainer.addEventListener("click", () => {
+//     Trigger_inputModal("credentialsPanel");
+//     resetModal();
+// });
 Modal_Form.addEventListener("click", (e) => {
     e.stopImmediatePropagation();
 });
